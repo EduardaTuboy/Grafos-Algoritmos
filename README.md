@@ -3,6 +3,7 @@
 ## Busca em Grafos
 ![image](https://github.com/EduardaTuboy/Grafos-Algoritmos/assets/128496419/22d571ba-3d42-435f-8abd-affd3b70df48)
 
+**Fonte: ChatGPT**
 Em grafos não ponderados, a escolha entre a busca em largura (BFS) e a busca em profundidade (DFS) depende do objetivo específico da busca, pois ambos os algoritmos têm suas forças e casos de uso onde um pode ser mais adequado que o outro. Vamos considerar alguns cenários comuns:
 
 ### Encontrando o Caminho Mais Curto
