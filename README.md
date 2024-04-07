@@ -30,4 +30,24 @@ Em grafos não ponderados, a escolha entre a busca em largura (BFS) e a busca em
 
 Portanto, em grafos não ponderados, a escolha entre BFS e DFS depende fortemente do problema específico e dos objetivos. Ambos têm seus méritos, e a seleção entre um e outro deve ser baseada na natureza da tarefa a ser realizada.
 
+As complexidades de tempo e espaço dos algoritmos de busca em largura (BFS, do inglês "Breadth-First Search") e busca em profundidade (DFS, do inglês "Depth-First Search") são conceitos fundamentais para entender a eficiência desses algoritmos ao explorar grafos. Vamos detalhá-las considerando um grafo \(G\) com \(V\) vértices e \(E\) arestas.
+
+### Complexidade de Tempo
+
+- **BFS**: A complexidade de tempo do BFS é \(O(V + E)\) para grafos representados por listas de adjacência, que é o caso mais comum. O BFS visita cada vértice uma única vez, o que custa \(O(V)\), e também percorre todas as arestas nos grafos, o que custa \(O(E)\). Em grafos densos, onde \(E\) é próximo de \(V^2\), a complexidade pode ser vista como \(O(V^2)\) porque o número de arestas domina a expressão.
+
+- **DFS**: Similarmente, a complexidade de tempo do DFS é \(O(V + E)\) quando o grafo é representado por listas de adjacência. O raciocínio é o mesmo que para o BFS: cada vértice é visitado uma vez, e o algoritmo percorre todas as arestas para explorar profundamente o grafo. Assim, o termo \(O(V + E)\) cobre tanto a visita aos vértices quanto a exploração das arestas. Em grafos densos, a complexidade também tende a \(O(V^2)\).
+
+### Complexidade de Espaço
+
+- **BFS**: A complexidade de espaço do BFS é \(O(V)\), pois, no pior caso, pode precisar armazenar todos os vértices em uma fila. Isso ocorre quando o grafo está em sua maior "largura", ou seja, quando um vértice está diretamente conectado a todos os outros vértices que ainda não foram visitados.
+
+- **DFS**: A complexidade de espaço para o DFS, quando implementado de forma recursiva, é \(O(V)\) devido à pilha de chamadas de recursão. No pior caso, isso ocorre quando o grafo é implementado como uma "lista longa" de vértices, onde cada vértice está conectado apenas ao próximo vértice na lista (exceto o último vértice), fazendo com que a pilha de chamadas recursivas cresça linearmente com o número de vértices. Se o DFS for implementado de forma iterativa com uma pilha explícita, a análise de espaço permanece a mesma.
+
+### Considerações
+
+- A escolha entre BFS e DFS depende do problema específico que você está tentando resolver. Por exemplo, BFS é tipicamente usado para encontrar o caminho mais curto em grafos não ponderados, enquanto DFS pode ser útil para explorar todas as possíveis configurações em um espaço de problema ou para realizar uma ordenação topológica em grafos direcionados acíclicos.
+
+- Para grafos representados por matrizes de adjacência, a complexidade de tempo tanto para BFS quanto para DFS pode ser vista como \(O(V^2)\), independentemente da densidade do grafo, devido à necessidade de examinar a matriz inteira.
+
 
