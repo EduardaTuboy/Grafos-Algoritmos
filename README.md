@@ -10,6 +10,9 @@ Em grafos não ponderados, a escolha entre a busca em largura (BFS) e a busca em
 ### Encontrando o Caminho Mais Curto
 
 - **BFS** é geralmente preferido para encontrar o caminho mais curto em grafos não ponderados porque ele explora todos os vértices a uma distância \(d\) antes de se mover para os vértices a uma distância \(d+1\). Isso garante que, assim que o destino for alcançado, o caminho encontrado será o mais curto possível em termos de número de arestas.
+EX: De 0 até 3:
+    BFS faz: 0, 1, 3
+    DFS faz: 0, 1, 2, 3
 
 ### Explorando Grafos
 
