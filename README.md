@@ -16,7 +16,7 @@ EX: De 0 até 3:
 
 ### Explorando Grafos
 
-- **DFS** pode ser mais útil em situações onde você precisa explorar o grafo o mais completamente possível a partir de um vértice de origem, seguindo um caminho até o final antes de retroceder. Por exemplo, o DFS é frequentemente usado em algoritmos de classificação topológica ou para encontrar componentes conectados em grafos não direcionados, bem como componentes fortemente conectados em grafos direcionados.
+- **DFS** pode ser mais útil em situações onde você precisa explorar o grafo o mais completamente possível a partir de um vértice de origem, seguindo um caminho até o final antes de retroceder. Por exemplo, o DFS é frequentemente usado em algoritmos de classificação topológica ou para encontrar componentes conectados em grafos não direcionados, bem como componentes fortemente conectados em grafos direcionados. Isso porque você segue caminhos acessíveis do grafo, e não pula partes do grafo como no BFS.
 
 ### Uso de Memória
 
