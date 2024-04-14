@@ -5,6 +5,8 @@
 
 *Fonte: ChatGPT*
 
+**BFS:** Entra no último filho que ele mapeou
+
 Em grafos não ponderados, a escolha entre a busca em largura (BFS) e a busca em profundidade (DFS) depende do objetivo específico da busca, pois ambos os algoritmos têm suas forças e casos de uso onde um pode ser mais adequado que o outro. Vamos considerar alguns cenários comuns:
 
 ### Encontrando o Caminho Mais Curto
