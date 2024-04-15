@@ -36,7 +36,6 @@ void addEdge(Graph *graph, int src, int dest) {
 void fillOrder(Graph *graph, int v) {
   // Marcar o nó atual como visitado
   graph->visited[v] = 1;
-  printf("%d cinza\n", v);
 
   // Iterar sobre todos os nós adjacentes
   Node *temp = graph->adjList[v];
@@ -49,7 +48,6 @@ void fillOrder(Graph *graph, int v) {
 
   // Empilhar o nó atual
   graph->stack[++graph->top] = v;
-  printf("%d preto\n", v);
 }
 
 // Função para transpor o grafo (inverter as direções das arestas)
@@ -80,17 +78,17 @@ void printStack(Graph *graph) {
 
 // Função para imprimir os componentes fortemente conectados
 void printStronglyConnectedComponents(Graph *graph, int V, int v, int v2) {
-  graph->visited[v] = 1;
+  graph->visited[v] = 1; // fala que v foi visitado já no começo
   printf("%d faz parte do cfc do %d\n", v, v2);
   Node *temp = graph->adjList[v];
-  while (temp != NULL) {
+  while (temp != NULL) { // vejos os filhos do nó
     int adjVertex = temp->vertex;
+    // se filhos não estão como visitados, entro recursivamente
     if (!graph->visited[adjVertex]) {
+      printf("AdjVertex: %d\n", v);
       printStronglyConnectedComponents(graph, V, adjVertex, v2);
-    } else {
-      printf("%d já estava visitado (v2: %d)\n", v, v2);
     }
-    temp = temp->next;
+    temp = temp->next; // passa para o próximo nó
   }
 }
 
@@ -119,7 +117,8 @@ void kosaraju(Graph *graph, int V) {
   printf("Componentes fortemente conectados:\n");
   while (graph->top >= 0) {
     int v = graph->stack[graph->top--];
-    if (!transposedGraph->visited[v]) {
+    if (!transposedGraph
+             ->visited[v]) { // pula a pilha aqui se já contei como componente
       printf("Condição de teste: O vértice %d não foi visitado no grafo "
              "transposto\n",
              v);
