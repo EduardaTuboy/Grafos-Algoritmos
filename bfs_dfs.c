@@ -49,6 +49,50 @@ int dequeue(Queue *Q) {
 
 int isEmpty(Queue *Q) { return Q->size == 0; }
 
+// Definição da estrutura do nó da lista encadeada
+typedef struct Node {
+  int data;          // Valor do nó
+  struct Node *next; // Ponteiro para o próximo nó
+} Node;
+
+// Definição da estrutura do TAD lista encadeada
+typedef struct {
+  Node *head; // Ponteiro para o primeiro nó na lista
+} LinkedList;
+
+// Função para criar uma nova lista encadeada vazia
+LinkedList *createLinkedList() {
+  LinkedList *newList = (LinkedList *)malloc(sizeof(LinkedList));
+  newList->head = NULL;
+  return newList;
+}
+
+// Função para adicionar um elemento no início da lista
+void addToHead(LinkedList *list, int value) {
+  // Criar um novo nó
+  Node *newNode = (Node *)malloc(sizeof(Node));
+  newNode->data = value;
+
+  // O próximo nó do novo nó é o atual primeiro nó da lista
+  newNode->next = list->head;
+
+  // O novo nó agora é o primeiro nó da lista
+  list->head = newNode;
+}
+
+// Função para imprimir os elementos da lista
+void printList(LinkedList *list) {
+  Node *current = list->head;
+  printf("Lista: ");
+  while (current != NULL) {
+    printf("%d ", current->data);
+    current = current->next;
+  }
+  printf("\n");
+}
+
+// ---------------------------------------------------------------------------------------
+
 void print_BFS(int n, int color[], int p[], int d[]) {
   for (int i = 0; i < n; i++) {
     printf("color[%d]: % 8d | d[%d]: % 8d | p[%d]: % 8d\n", i, color[i], i,
@@ -133,22 +177,24 @@ void print_DFS(int n, int color[], int p[], int t[]) {
 
 // Função auxiliar para realizar a DFS a partir de um vértice u
 void DFS_Visit(int u, int G[5][5], int n, int color[], int t[], int p[],
-               int *time) {
+               int *time, LinkedList *List) {
   color[u] = GRAY;
   t[u] = ++(*time);             // Tempo de descoberta (vértice ficar preto)
   print_DFS(n, color, p, t);    // Opcional: imprimir o estado atual
   for (int v = 0; v < n; v++) { // vejos os vizinhos válidos v de u
     if (G[u][v] && color[v] == WHITE) {
       p[v] = u; // u é pai de v
-      DFS_Visit(v, G, n, color, t, p, time);
+      DFS_Visit(v, G, n, color, t, p, time, List);
     }
   }
-  color[u] = BLACK;
+  color[u] = BLACK;          // quando já vi todos os filhos do nó
+  addToHead(List, u);        // Ordenação Topológica
   print_DFS(n, color, p, t); // Opcional: imprimir o estado atual
 }
 
 void DFS(int G[5][5], int n, int *path) {
   int color[n], t[n], p[n], time = 0;
+  LinkedList *List = createLinkedList();
   for (int i = 0; i < n; i++) {
     color[i] = WHITE;
     p[i] = NIL;
@@ -157,10 +203,10 @@ void DFS(int G[5][5], int n, int *path) {
   // Para cada vértice u do grafo G, faça DFS_Visit se u não foi visitado
   for (int u = 0; u < n; u++) {
     if (color[u] == WHITE) {
-      DFS_Visit(u, G, n, color, t, p, &time);
+      DFS_Visit(u, G, n, color, t, p, &time, List);
     }
   }
-
+  printList(List);
   // Não é necessário reconstruir o caminho para DFS como feito em BFS
 }
 
@@ -176,6 +222,7 @@ int main() {
   //                {0, 1, 0, 0, 0},
   //                {0, 0, 1, 0, 0},
   //                {0, 0, 0, 1, 0}};
+
   int path[5]; // Assuming the path will not have more than 5 vertices
   BFS(G, 0, 5, path);
   // DFS(G, 5, path);
