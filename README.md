@@ -10,10 +10,13 @@ Em grafos não ponderados, a escolha entre a busca em largura (BFS) e a busca em
 ### Encontrando o Caminho Mais Curto
 
 - **BFS** é geralmente preferido para encontrar o caminho mais curto em grafos não ponderados porque ele explora todos os vértices a uma distância \(d\) antes de se mover para os vértices a uma distância \(d+1\). Isso garante que, assim que o destino for alcançado, o caminho encontrado será o mais curto possível em termos de número de arestas.
+EX: De 0 até 3:
+    BFS faz: 0, 1, 3
+    DFS faz: 0, 1, 2, 3
 
 ### Explorando Grafos
 
-- **DFS** pode ser mais útil em situações onde você precisa explorar o grafo o mais completamente possível a partir de um vértice de origem, seguindo um caminho até o final antes de retroceder. Por exemplo, o DFS é frequentemente usado em algoritmos de classificação topológica ou para encontrar componentes conectados em grafos não direcionados, bem como componentes fortemente conectados em grafos direcionados.
+- **DFS** pode ser mais útil em situações onde você precisa explorar o grafo o mais completamente possível a partir de um vértice de origem, seguindo um caminho até o final antes de retroceder. Por exemplo, o DFS é frequentemente usado em algoritmos de classificação topológica ou para encontrar componentes conectados em grafos não direcionados, bem como componentes fortemente conectados em grafos direcionados. Isso porque você segue caminhos acessíveis do grafo, e não pula partes do grafo como no BFS.
 
 ### Uso de Memória
 
